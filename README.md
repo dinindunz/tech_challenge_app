@@ -47,6 +47,7 @@ command.
 
 ## Pre-Requisites
  
+ * `Install Go` 
  * `Install Python`                      Supported versions -> 3.8, 3.9, 3.10
  * `Setup AWS Credentials Profile`       Set AWS credentials in ~/.aws/credentials
  * `Add Credentials profile to cdk.json` Include aws_region and aws_account_id

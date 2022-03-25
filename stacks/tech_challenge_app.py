@@ -16,7 +16,7 @@ class TechChallengeApp(Stack):
     ) -> None:
         super().__init__(scope, construct_id, **kwargs)
 
-        image_tag = "1.4.0"
+        image_tag = "1.5.0"
 
         # Build the Docker Image
         image.BuildEcrImage(

@@ -36,20 +36,6 @@ class DeployEcsFargateCluster(Construct):
         """
         super().__init__(scope, construct_id, **kwargs)
 
-        # Create ECS Security Group
-        ecs_sg = ec2.SecurityGroup(
-            self,
-            f"{construct_id}-ECS-SG",
-            security_group_name=f"{construct_id}-ECS-SG",
-            vpc=vpc,
-        )
-        ecs_sg.add_ingress_rule(peer=ec2.Peer.any_ipv4(), connection=ec2.Port.tcp(80))
-        ecs_sg.add_ingress_rule(peer=ec2.Peer.any_ipv4(), connection=ec2.Port.tcp(3000))
-        ecs_sg.add_ingress_rule(
-            peer=ec2.Peer.any_ipv4(),
-            connection=ec2.Port.tcp_range(start_port=49152, end_port=65535),
-        )
-
         # Get ECR Repo
         ecr_repo = ecr.Repository.from_repository_name(
             self, f"{construct_id}-Cluster-Ecr-Repo", repository_name=ecr_repo_name
@@ -82,5 +68,6 @@ class DeployEcsFargateCluster(Construct):
             memory_limit_mib=512,
             public_load_balancer=True,
             task_subnets=ec2.SubnetSelection(subnet_type=ec2.SubnetType.PUBLIC),
-            security_groups=[ecs_sg],
+            #security_groups=[ecs_sg],
+            platform_version=ecs.FargatePlatformVersion.VERSION1_3
         )

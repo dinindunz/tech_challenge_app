@@ -21,6 +21,11 @@ black app.py
 black custom_constructs
 black stacks
 
+echo "Linting code using Flake8"
+flake8 app.py
+flake8 custom_constructs
+flake8 stacks
+
 echo "Bootstrap AWS Account..."
 #cdk bootstrap --profile $1
 
